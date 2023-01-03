@@ -7,7 +7,7 @@ https://erikthiart.com/tools/calculate-battery-runtime-using-watts.php
 
 ## Support
 
-If you find this software helpful and would like to support the development of more free tools like this, please consider making a donation through PayPal at paypal.me/erikthiart. Your support is greatly appreciated and helps me to continue creating useful resources for the community. Thank you!
+If you find this software helpful and would like to support the development of more free tools like this, please consider making a donation through PayPal at [paypal.me/erikthiart](https://paypal.me/erikthiart). Your support is greatly appreciated and helps me to continue creating useful resources for the community. Thank you!
 
 ### Overview
 

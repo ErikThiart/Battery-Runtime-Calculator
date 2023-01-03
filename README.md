@@ -1,15 +1,15 @@
 # Battery-Runtime-Calculator
 Calculate your battery runtime using Watts
 
-# Live DEMO
+## Live DEMO
 
 https://erikthiart.com/tools/calculate-battery-runtime-using-watts.php
 
-# Support
+## Support
 
 If you find this software helpful and would like to support the development of more free tools like this, please consider making a donation through PayPal at paypal.me/erikthiart. Your support is greatly appreciated and helps me to continue creating useful resources for the community. Thank you!
 
-## Overview
+### Overview
 
 This is a PHP script that calculates the run time of a battery using various inputs such as voltage, amp-hours, load in watts, inverter type, and battery type. 
 
@@ -25,19 +25,19 @@ The script then calculates the number of hours, minutes, and seconds based on th
 
 The script then displays the output variable, which will either be an error message or the run time message, within a Bootstrap alert box.
 
-## Formula
+### Formula
 
 Volts of the battery x Ah rating of the battery / Watts of the load / The battery’s depth of discharge (DoD) x The efficiency of the inverter
 
-## TO DO
+### TO DO
 
-### Refactor
+#### Refactor
 
-#### Switch Cases
+##### Switch Cases
 
 To refactor these switch statements, one can use an array to map the values of `battery_type` and `inverter_type` to their corresponding depths of discharge and efficiencies, respectively.
 
-```
+```php
 // Map battery types to depths of discharge
 $battery_type_to_dod = [
     'lead_acid' => 3,
@@ -61,13 +61,13 @@ $efficiency = $inverter_type_to_efficiency[$form_values['inverter_type']] ?? 0.6
 
 Using this approach, one can avoid the use of switch statements and make the code easier to read and maintain.
 
-#### Run Time Calculator
+##### Run Time Calculator
 
 One could consider creating a function to handle the calculations for the run time. This would make the code easier to read and maintain, as well as easier to reuse.
 
 Here is an example of how this refactored code could look:
 
-```
+```php
 function calculateRunTime($voltage, $amp_hour, $load_watts, $dod, $efficiency) {
     // Calculate the run time using the formula - Volts of the battery x Ah rating of the battery / Watts of the load / The battery's depth of discharge (DoD) x The efficiency of the inverter
     $run_time = ($voltage * $amp_hour * $efficiency) / ($load_watts * $dod);
@@ -89,7 +89,7 @@ function calculateRunTime($voltage, $amp_hour, $load_watts, $dod, $efficiency) {
 
 To use this function, one would call it like this:
 
-```
+```php
 $run_time = calculateRunTime($form_values['voltage'], $form_values['amp_hour'], $form_values['load_watts'], $dod, $efficiency);
 $output = '<div class="alert alert-success lead"><strong>Run time:</strong> ' . $run_time . '</div>';
 

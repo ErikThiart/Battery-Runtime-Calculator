@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $value = trim($value);
         // Check if the value is an empty string or if it is not set
         if (empty($value)) {
-            $output .= '<div class="alert alert-danger"><strong>Error:</strong> ' . $name . ' must not be an empty string.</div>';
+            $output .= '<div class="alert alert-danger lead"><strong>Error:</strong> ' . $name . ' must not be an empty string nor a letter, only numbers are allowed.</div>';
             break;
         }
     }
@@ -35,16 +35,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         // Set the efficiency of the inverter based on the inverter type
         switch ($form_values['inverter_type']) {
-            case "ups_apc":
-                $efficiency = 0.80; // Good UPS like APC or KStar
-                break;
             case "ups_average":
                 $efficiency = 0.60; // Average UPS like Mecer or RCT
                 break;
+            case "modified_sinewave_inverter":
+                $efficiency = 0.75; // Generic Modified Sinewave Inverters - Avg Efficiency
+                break;
+            case "ups_apc":
+                $efficiency = 0.80; // Good UPS like APC or KStar
+                break;
+            case "trolly_inverter":
+                $efficiency = 0.83; // Mecer Trolly Inverters
+                break;
+            case "pure_sinewave_inverter":
+                $efficiency = 0.90; // Generic Modified Sinewave Inverters - Avg Efficiency
+                break;
             case "inverter":
-                $efficiency = 0.90; // High end Inverter like SunSynk, Kodak, Deye
+                $efficiency = 0.95; // High end Inverter like SunSynk, Kodak, Deye
+                break;
             default:
-                $efficiency = 0.65; // Fallback
+                $efficiency = 0.65; // Fallback, use lowest efficiecy for safety ( under promise, over deliver )
         }
 
         // Calculate the run time using the formula - Volts of the battery x Ah rating of the battery / Watts of the load / The battery's depth of discharge (DoD) x The efficiency of the inverter
